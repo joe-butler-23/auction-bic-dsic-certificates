@@ -22,3 +22,45 @@ keywords:
   - "computer-assisted-proof"
   - "msc-91b26"
 abstract: "Lean 4 + Mathlib proofs and exact-rational certificates for continuous multi-bidder, multi-item auctions: (1) for two unit-demand bidders and two items with i.i.d. values L + U^2 (U uniform on [0,1]), an explicit deterministic mechanism that is Lean-proved revenue-optimal among all randomized BIC + interim-IR and DSIC + ex-post IR mechanisms if and only if L >= 2/pi; and (2) strict continuous BIC > DSIC separation and H(div) Raviart-Thomas DSIC upper bounds for 2x2 and 3x2 U[0,1], 2x2 Beta(1,2), and 2x3 U[0,1]^3 additive auctions."
+references:
+  - type: article
+    title: "Neural Lagrangian Duality for Continuous Multi-Item Mechanism Design"
+    authors:
+      - family-names: "Jiang"
+      - family-names: "Parkes"
+        given-names: "David C."
+      - family-names: "Wang"
+    year: 2026
+    doi: "10.48550/arXiv.2606.10112"
+    url: "https://arxiv.org/abs/2606.10112"
+  - type: article
+    title: "Optimal Dominant-Strategy Mechanisms for Multi-Item Auctions with Two-Point Distributions"
+    authors:
+      - family-names: "Liu"
+      - family-names: "Liu"
+      - family-names: "Wang"
+    year: 2026
+    doi: "10.48550/arXiv.2610.11051"
+    url: "https://arxiv.org/abs/2610.11051"
+  - type: article
+    title: "Beckmann's Approach to Multi-Item Multi-Bidder Auctions"
+    authors:
+      - family-names: "Kolesnikov"
+        given-names: "Alexander V."
+      - family-names: "Sandomirskiy"
+        given-names: "Fedor"
+      - family-names: "Tsyvinski"
+        given-names: "Aleh"
+      - family-names: "Zimin"
+        given-names: "Alexey P."
+    year: 2022
+    doi: "10.48550/arXiv.2203.06837"
+    url: "https://arxiv.org/abs/2203.06837"
+  - type: article
+    title: "Dominant-Strategy versus Bayesian Multi-Item Auctions: Maximum Revenue Determination and Comparison"
+    authors:
+      - family-names: "Yao"
+        given-names: "Andrew Chi-Chih"
+    year: 2017
+    doi: "10.48550/arXiv.1607.03685"
+    url: "https://arxiv.org/abs/1607.03685"

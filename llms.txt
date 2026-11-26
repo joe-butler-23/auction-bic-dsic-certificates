@@ -1,0 +1,51 @@
+# Continuous Multi-Item Auction Optimal DSIC Mechanisms & BIC-DSIC Certificates
+
+> Machine-verified Lean 4.36 + Mathlib proofs, independent Rust `nanoda` kernel checks, and exact-rational H(div) Raviart-Thomas certificates for continuous multi-bidder, multi-item auction design.
+
+- Repository: https://github.com/joe-butler-23/auction-bic-dsic-certificates
+- Author: Joe Butler (2026)
+- License: MIT
+
+## Headline Certified Results (Plain-ASCII & Searchable Summary)
+
+1. **Track 1 — Exact Optimal 2x2 Unit-Demand DSIC (= BIC) Auction (`optimal-dsic/`):**
+   - Setting: 2 unit-demand bidders, 2 indivisible items, i.i.d. values `v_ij = L + U_ij^2` with `U_ij ~ Uniform[0,1]` (continuous CDF `sqrt(v - L)` on `[L, L+1]`).
+   - Result: Explicit deterministic posted-price mechanism proved in **Lean 4.36 + Mathlib** (zero `sorry`, standard axioms `[propext, Classical.choice, Quot.sound]` only, `13/13` `leanchecker` PASS) to be revenue-optimal among all measurable randomized BIC + interim-IR and DSIC + ex-post IR mechanisms **if and only if `L >= 2/pi`**.
+   - Benchmark addressed: Characterization Goal of EconCS-Bench `revenue-optimal-dsic-auction` (`https://github.com/aieconcs/econcs-bench`) for this distribution family (unbounded endpoint density at `L`; bounded-density Uniform[0,1] remains open).
+
+2. **Track 2 — Continuous Additive `Rev_BIC* > Rev_DSIC*` Separation & Exact-Rational Dual Bounds (Repo Root):**
+   - `2x2` additive `U[0,1]`: `Rev_BIC* >= 62105/69984 > 2324277/2621440 >= Rev_DSIC*` under equal ex-post IR and NPT, kernel-proved in **Lean 4.36 + `nanoda 0.4.17`** (`lean/AuctionSep/EqualExPostIR.lean`, `43,445` declarations).
+   - `2x2` additive `U[0,1]` tighter exact-rational bounds: `Rev_DSIC* <= 0.8817556131` (`M=10` RT0 dual, improving on Fang 2026 `0.8823515855` and Jiang-Parkes-Wang `arXiv:2606.10112` `0.8919`), `Rev_BIC* >= 0.8911490551` (explicit 854-cell ex-post coupling, improving on Kolesnikov-Sandomirskiy-Tsyvinski-Zimin `arXiv:2203.06837`).
+   - `3x2` additive `U[0,1]`: `Rev_DSIC* <= 1.1092371527` (`M=5` RT0, improving on `arXiv:2606.10112` `1.120`), `Rev_BIC* >= 1.1102826130` (explicit 409-cell ex-post coupling).
+   - `2x2` additive `Beta(1,2)` on full `[0,1]^2`: `Rev_DSIC* <= 0.5878659834` (`M=8, S=8`).
+   - `2x3` additive `U[0,1]^3`: `Rev_DSIC* <= 1.3905597048` (`M=4`, `S_3`-equivariant).
+
+## Related Papers & Benchmarks Addressed
+
+- EconCS-Bench (`aieconcs/econcs-bench`, `revenue-optimal-dsic-auction`)
+- Jiang, Parkes, and Wang (2026), `arXiv:2606.10112` (`10.48550/arXiv.2606.10112`)
+- Liu, Liu, and Wang (2026), `arXiv:2610.11051` (`10.48550/arXiv.2610.11051`)
+- Fang (2026), `Baymax-ray/two-bidder-two-item-dsic-certificates`
+- Kolesnikov, Sandomirskiy, Tsyvinski, and Zimin (2022), `arXiv:2203.06837` (`10.48550/arXiv.2203.06837`)
+- Yao (2017), `arXiv:1607.03685` (`10.48550/arXiv.1607.03685`)
+- Giannakopoulos and Koutsoupias (2014, 2015); Daskalakis, Deckelbaum, and Tzamos (2015, 2017); Pavlov (2011)
+
+## Fast Autonomous Verification Commands
+
+```bash
+uv run --with numpy python3 -O verify_all_certificates.py
+uv run --with numpy python3 -O tests/test_verifier.py
+cd optimal-dsic/lean && ./replay.sh
+cd lean && lake exe cache get && lake build
+```
+
+## Key Files
+
+- [README.md](README.md): Overview, certified tables, prior-work comparison, and trust boundaries.
+- [SPEC.md](SPEC.md): Formal economic definitions, Lean theorem statements, and exact-rational RT0/BIC proof bridges.
+- [optimal-dsic/PAPER.md](optimal-dsic/PAPER.md): Self-contained proof guide for Theorems 1-3 (`L >= 2/pi` iff characterization).
+- [optimal-dsic/lean/EconCSAuction/Spec.lean](optimal-dsic/lean/EconCSAuction/Spec.lean): Isolated 235-line Lean 4 specification.
+- [lean/AuctionSep/EqualExPostIR.lean](lean/AuctionSep/EqualExPostIR.lean): Lean 4 `2x2` `U[0,1]` `BIC > DSIC` theorem.
+- [verify_all_certificates.py](verify_all_certificates.py): Standalone exact-rational (`fractions.Fraction`) certificate verifier.
+- [CITATION.cff](CITATION.cff): Machine-readable citation metadata and outgoing DOI references.
+- [SHA256SUMS](SHA256SUMS): SHA-256 integrity manifest for all repository files.
