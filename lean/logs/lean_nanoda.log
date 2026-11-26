@@ -1,0 +1,61 @@
+theorem AuctionSep.main_theorem_equal_ex_post_ir :
+  Exists
+    (fun (M_bic : AuctionSep.Mechanism) =>
+    Exists
+      (fun (lam : AuctionSep.Type2 → Real) =>
+      Exists
+        (fun (c : Real) =>
+        And (AuctionSep.IsFeasible M_bic)
+          (And (AuctionSep.IsBIC M_bic)
+            (And (AuctionSep.IsExPostIR M_bic)
+              (And
+                (forall (x : AuctionSep.Type2) (a._@._internal._hyg.0 : Membership.mem AuctionSep.unitSquare x)
+                  (y : AuctionSep.Type2),
+                Membership.mem AuctionSep.unitSquare y → And
+                  (LE.le (OfNat.ofNat 0) (AuctionSep.Mechanism.t1 M_bic x y))
+                  (LE.le (OfNat.ofNat 0) (AuctionSep.Mechanism.t2 M_bic x y)))
+                (And
+                  (forall (x : AuctionSep.Type2),
+                  Membership.mem AuctionSep.unitSquare x → And (LE.le (OfNat.ofNat 0) (lam x))
+                    (LE.le (lam x) (OfNat.ofNat 1)))
+                  (And
+                    (forall (x : AuctionSep.Type2) (a._@._internal._hyg.0 : Membership.mem AuctionSep.unitSquare x)
+                      (y : AuctionSep.Type2),
+                    Membership.mem AuctionSep.unitSquare y → And
+                      (Eq (AuctionSep.Mechanism.t1 M_bic x y)
+                        (HMul.hMul (lam x)
+                          (HAdd.hAdd (HMul.hMul (Prod.fst x) (AuctionSep.Mechanism.q11 M_bic x y))
+                            (HMul.hMul (Prod.snd x) (AuctionSep.Mechanism.q12 M_bic x y)))))
+                      (Eq (AuctionSep.Mechanism.t2 M_bic x y)
+                        (HMul.hMul (lam y)
+                          (HAdd.hAdd (HMul.hMul (Prod.fst y) (AuctionSep.Mechanism.q21 M_bic x y))
+                            (HMul.hMul (Prod.snd y) (AuctionSep.Mechanism.q22 M_bic x y))))))
+                    (And
+                      (forall (x : AuctionSep.Type2) (a._@._internal._hyg.0 : Membership.mem AuctionSep.unitSquare x)
+                        (b1 b2 : Real),
+                      LE.le (OfNat.ofNat 0) b1 → LE.le (OfNat.ofNat 0) b2 → And
+                        (LE.le (OfNat.ofNat 0)
+                          (HMul.hMul (lam x) (HAdd.hAdd (HMul.hMul (Prod.fst x) b1) (HMul.hMul (Prod.snd x) b2))))
+                        (LE.le (HMul.hMul (lam x) (HAdd.hAdd (HMul.hMul (Prod.fst x) b1) (HMul.hMul (Prod.snd x) b2)))
+                          (HAdd.hAdd (HMul.hMul (Prod.fst x) b1) (HMul.hMul (Prod.snd x) b2))))
+                      (And (Eq (AuctionSep.ExpectedRevenue M_bic) (HDiv.hDiv (OfNat.ofNat 62105) (OfNat.ofNat 69984)))
+                        (And (Eq c (HDiv.hDiv (OfNat.ofNat 2324277) (OfNat.ofNat 2621440)))
+                          (And (LT.lt c (AuctionSep.ExpectedRevenue M_bic))
+                            (forall (M_dsic : AuctionSep.Mechanism),
+                            AuctionSep.IsFeasible M_dsic → AuctionSep.IsDSIC M_dsic → Or
+                                (AuctionSep.IsExPostIR M_dsic) (AuctionSep.IsInterimIR M_dsic) →
+                            LE.le (AuctionSep.ExpectedRevenue M_dsic) c))))))))))))) :=
+  _
+
+theorem AuctionSep.dsic_interimIR_expectedRevenue_le (M : AuctionSep.Mechanism) (hF : AuctionSep.IsFeasible M)
+  (hD : AuctionSep.IsDSIC M) (hIR : AuctionSep.IsInterimIR M) :
+  LE.le (AuctionSep.ExpectedRevenue M) (HDiv.hDiv (OfNat.ofNat 2324277) (OfNat.ofNat 2621440)) :=
+  _
+
+axiom propext {a b : Prop} : Iff a b → Eq a b
+
+axiom Quot.sound.{u} {α : Sort u} {r : α → α → Prop} {a b : α} : r a b → Eq (Quot.mk r a) (Quot.mk r b)
+
+axiom Classical.choice.{u} {α : Sort u} : Nonempty α → α
+
+Checked 43445 declarations with no errors

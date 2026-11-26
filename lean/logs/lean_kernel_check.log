@@ -1,0 +1,49 @@
+=== Lean 4.36.0 Build, Axiom Check, leanchecker, and leanchecker --fresh (paranoid) ===
+Date: 2026-11-24
+Toolchain: leanprover/lean4:v4.36.0
+Module: AuctionSep.EqualExPostIR
+
+lake build AuctionSep.EqualExPostIR:
+  Built AuctionSep.EqualExPostIR (4.2s)
+  Build completed successfully (5739 jobs).
+
+lake build AuctionSep:
+  Build completed successfully (5740 jobs).
+
+lake env leanchecker AuctionSep.EqualExPostIR -> exit 0
+lake env leanchecker --fresh AuctionSep.EqualExPostIR -> exit 0
+
+#print axioms:
+'AuctionSep.main_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AuctionSep.dsic_interimIR_expectedRevenue_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AuctionSep.main_theorem_equal_ex_post_ir' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+#check @AuctionSep.dsic_interimIR_expectedRevenue_le:
+AuctionSep.dsic_interimIR_expectedRevenue_le : ∀ (M : AuctionSep.Mechanism),
+  AuctionSep.IsFeasible M →
+    AuctionSep.IsDSIC M → AuctionSep.IsInterimIR M → AuctionSep.ExpectedRevenue M ≤ 2324277 / 2621440
+
+#check @AuctionSep.main_theorem_equal_ex_post_ir:
+AuctionSep.main_theorem_equal_ex_post_ir : ∃ M_bic lam c,
+  AuctionSep.IsFeasible M_bic ∧
+    AuctionSep.IsBIC M_bic ∧
+      AuctionSep.IsExPostIR M_bic ∧
+        (∀ x ∈ AuctionSep.unitSquare, ∀ y ∈ AuctionSep.unitSquare, 0 ≤ M_bic.t1 x y ∧ 0 ≤ M_bic.t2 x y) ∧
+          (∀ x ∈ AuctionSep.unitSquare, 0 ≤ lam x ∧ lam x ≤ 1) ∧
+            (∀ x ∈ AuctionSep.unitSquare,
+                ∀ y ∈ AuctionSep.unitSquare,
+                  M_bic.t1 x y = lam x * (x.1 * M_bic.q11 x y + x.2 * M_bic.q12 x y) ∧
+                    M_bic.t2 x y = lam y * (y.1 * M_bic.q21 x y + y.2 * M_bic.q22 x y)) ∧
+              (∀ x ∈ AuctionSep.unitSquare,
+                  ∀ (b1 b2 : ℝ),
+                    0 ≤ b1 →
+                      0 ≤ b2 →
+                        0 ≤ lam x * (x.1 * b1 + x.2 * b2) ∧ lam x * (x.1 * b1 + x.2 * b2) ≤ x.1 * b1 + x.2 * b2) ∧
+                AuctionSep.ExpectedRevenue M_bic = 62105 / 69984 ∧
+                  c = 2324277 / 2621440 ∧
+                    c < AuctionSep.ExpectedRevenue M_bic ∧
+                      ∀ (M_dsic : AuctionSep.Mechanism),
+                        AuctionSep.IsFeasible M_dsic →
+                          AuctionSep.IsDSIC M_dsic →
+                            AuctionSep.IsExPostIR M_dsic ∨ AuctionSep.IsInterimIR M_dsic →
+                              AuctionSep.ExpectedRevenue M_dsic ≤ c

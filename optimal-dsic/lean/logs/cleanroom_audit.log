@@ -1,0 +1,47 @@
+7a05d57431f22748d7aa7f69334a009eabcdb04291cc7a63a75680d4b75a94ae  EconCSAuction.lean
+7dbf09ec94639c72f221750be100fdbb3b54795f5c55e3dab420fe1f5a713e9b  EconCSAuction/Lemma1.lean
+ef31ba839a80a6a46b1961a4975751c094de6815fc93abb14335fd7cef3fcdf4  EconCSAuction/Lemma2.lean
+5aae23d736d49319cc52b8726c07fc217eed6f5a5203452b53ae4fb7c2ca52cc  EconCSAuction/Lemma3.lean
+4c2ffe6fa238bd9a6472bec098bace0dd6b4a293fbb213df707e397b9d5885ff  EconCSAuction/Lemma4.lean
+8bf5e34f91f1abfc16afd706d963e179319091e0e1ea46d0299d4274fd50121a  EconCSAuction/Lemma5.lean
+f76f558d0fcc4dfea2b5e41fd311e8b6ef1b12ceec9ecbc5d4bd3a009b2573c0  EconCSAuction/Lemma5Sharp.lean
+91ef7067148645b5e7d0ef8672581c954f6155a4175f487fb1ad25f4f9649520  EconCSAuction/MeasureHelpers.lean
+e786459a1279bbe1c6193bb061c7ca94d2da75e6f6874b254c69d92eab2e6b98  EconCSAuction/Proof.lean
+e701391d48a398442f3a47da77bee4d866111c5a02a68aa16ea0a972de936ae4  EconCSAuction/Spec.lean
+ab099f420d974b1a3e32a5f3ec31ba73aa9f942b39a4c557de4bac797507c1d8  EconCSAuction/SubgradIBP.lean
+6353bc39586d156789359366752ac3f7b32fc757f831ee8f6480401be78c027c  EconCSAuction/Theorem1.lean
+f4137dd6dc56488ea179c0ca4a66c0d53ec62a16898e9796d60860ca8254b5f8  EconCSAuction/Theorem2.lean
+4353fbe21535620401b8b2c6c14168cf560afa49e8a5bfed795809c37209623e  CleanRoomAudit.lean
+---
+EconCSAuction.theorem1_proof : EconCSAuction.Theorem1Statement
+EconCSAuction.sharpThreshold_proof : EconCSAuction.SharpThresholdStatement
+@EconCSAuction.flagshipMechanism_suboptimal_below_two_div_pi : ∀ {L : ℝ},
+  0 ≤ L →
+    L < 2 / Real.pi →
+      ∃ M,
+        EconCSAuction.IsFeasible L M ∧
+          EconCSAuction.IsDSIC L M ∧
+            EconCSAuction.IsExPostIR L M ∧
+              EconCSAuction.NonNegPayment L M ∧
+                EconCSAuction.IsSingleItem M ∧
+                  EconCSAuction.ExpectedRevenue L (EconCSAuction.flagshipMechanism L) <
+                    EconCSAuction.ExpectedRevenue L M
+'EconCSAuction.theorem1_proof' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EconCSAuction.theorem1_main' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EconCSAuction.sharpThreshold_proof' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EconCSAuction.flagshipMechanism_suboptimal_below_two_div_pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EconCSAuction.t0_mem_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EconCSAuction.existsUnique_t0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EconCSAuction.PhiPlus_t0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CleanRoomHostileAudit.audit_jointMeasure_univ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CleanRoomHostileAudit.audit_expectedRevenue_constP1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CleanRoomHostileAudit.audit_optimalRevenue_strictly_gt_two_L' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CleanRoomHostileAudit.audit_perturbedSymMechanism_nonNeg_singleItem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CleanRoomHostileAudit.audit_singleItem_lotteryRealizable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CleanRoomHostileAudit.audit_flagship_deterministic_lottery' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CleanRoomHostileAudit.audit_flagship_lotteryRealizable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CleanRoomHostileAudit.audit_suboptimal_lotteryRealizable' depends on axioms: [propext, Classical.choice, Quot.sound]
